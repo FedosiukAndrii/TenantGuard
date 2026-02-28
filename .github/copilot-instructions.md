@@ -26,3 +26,7 @@
 - Keep methods small and single responsibility.
 - Use clear naming and avoid static state.
 - Use best practices.
+
+## Startup Configuration
+- Local startup should open Swagger UI instead of raw OpenAPI JSON, which renders the OpenAPI spec.
+- Prefer Swagger setup implementation in a separate file instead of inline in Program.cs when adding features like tenant header support.

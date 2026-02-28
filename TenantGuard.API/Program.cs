@@ -1,4 +1,5 @@
 using TenantGuard.API.Middleware;
+using TenantGuard.API.Swagger;
 using TenantGuard.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,15 +10,14 @@ builder.Services.AddInfrastructure();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwaggerDocumentation();
 }
 
 app.UseExceptionHandler();
@@ -25,6 +25,7 @@ app.UseExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseMiddleware<TenantResolutionMiddleware>();
+app.UseMiddleware<RequestLoggingScopeMiddleware>();
 
 app.UseAuthorization();
 
