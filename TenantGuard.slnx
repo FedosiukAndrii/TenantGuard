@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="TenantGuard.API/TenantGuard.API.csproj" />
+    <Project Path="TenantGuard.Application/TenantGuard.Application.csproj" Id="fa65d3e9-a3e2-4857-896b-3979733a4a44" />
+    <Project Path="TenantGuard.Domain/TenantGuard.Domain.csproj" Id="9ec605d4-19de-41a8-9c8f-4cdf7c06e5b7" />
+    <Project Path="TenantGuard.Infrastructure/TenantGuard.Infrastructure.csproj" Id="55b542f3-b026-4a5c-b4a8-c188b7fb51b6" />
+  </Folder>
+</Solution>
