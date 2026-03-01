@@ -9,6 +9,12 @@
 - TenantGuard.Infrastructure – EF Core, external integrations, implementations of Application interfaces.
 - TenantGuard.Api – controllers, middleware, DI configuration (composition root).
 
+## General Rules
+- Prefer best-practice, production-ready approaches when they’re clearly better.
+- If details are missing, make reasonable assumptions and proceed; document them briefly.
+- Keep changes consistent across the codebase (API/DTOs/validation/errors/logging/config/DI).
+
+
 ## Architecture Rules
 - Dependencies flow inward only.
 - Interfaces live in Application.
