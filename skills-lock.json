@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "skills": {
+    "antigravity-skill-orchestrator": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "12aed118e2c93bac407592397a3cdb0efc2e0f7cff6dc23e00dc2f71c7c74c60"
+    },
+    "aspnet-core": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "192537b889ef60aba67db5f3c1f694e460fde9b6a45fb4c35ecab8e7710bfa67"
+    },
+    "bmad-agent-pm": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "sourceType": "github",
+      "computedHash": "49161d5ef10ba1efc9cc48116e1faa00eda28a26f158d93b155fd41b8e8ee037"
+    },
+    "bmad-create-architecture": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "sourceType": "github",
+      "computedHash": "e0181f66ecb1bcacaf84203b9c78983087de8a2277432568ecd1e90cecd6441f"
+    },
+    "bmad-create-prd": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "sourceType": "github",
+      "computedHash": "d0830fc47e75fa1d29d6e9185fb5c1473b0fb4f031974f8ee647c5a41d32b911"
+    },
+    "bmad-edit-prd": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "sourceType": "github",
+      "computedHash": "e6f428e9606710755c6cbee43ff7bfc073831adaabb0a593838cb99a939bd2cc"
+    },
+    "create-specification": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "45b9ef98b0fb82ba0e1aee65dfb464fa1f8494a14a557b9788d73aae87e9e618"
+    },
+    "create-technical-spike": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "e711706b4aebacac01bcc025e19bcf0e88bf784cbe6419ddf07c2be67c501f33"
+    },
+    "figma": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "0139fbd3f7afd9d81dbf128e3ad912daf21047bcd7f2be0f6997f718b48c0643"
+    },
+    "figma-code-connect-components": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "7af50c1c8848ba0fcfe9fb45bbe0dd7bf9a1acdf3121e2bde239c4865bb12ace"
+    },
+    "figma-create-design-system-rules": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "a2ba7ea022677bdd366cd6cfd8e5326f3b3051b92a06ec3e215e0ad484956a87"
+    },
+    "figma-create-new-file": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "7a70a1e2996bfab15aafec6837d2f45a0e1a8e095fef77b5c4d8b63083325737"
+    },
+    "figma-generate-design": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "61fde9e23b4377e9c0058590e90f3758abddf3ac1b3eaf740d239376a2787663"
+    },
+    "figma-generate-library": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "67e96c3d5a55afc7c76430918340e6c94b7c7d1770ecb6a5ed963f98366c2752"
+    },
+    "figma-implement-design": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "f86f7eb84aeda74334e1eb33faf08dc67e19d88ef5f2cc84eee559333e88e001"
+    },
+    "figma-use": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "d067eb72def273b5d6117c27dd9e8af08fbb957068b8faf6a214aa0d71d520db"
+    },
+    "frontend-skill": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "bcf97f1a6873800d57c6afba4f7645b3c88f4f1eaa012f73e053c123eb116b74"
+    },
+    "obsidian-cli": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "fe0ca288b4997a3dcd9a62299cf0e530cdc6df568823767ac237ac6ceefee274"
+    },
+    "obsidian-markdown": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "92d1c2f3c637014d4930d616911bfadcbe17799706f666beeccbddbf3ec417d9"
+    },
+    "prd": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "1f3e1f005fc40fda85d250ae906c8ee4f7e8e833e23adfeca6542c19609fd7cd"
+    },
+    "prompt-builder": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "1591d452ec2ba6d70faaa96b481f7c8261a280df838fee9c5295804fa28acbd3"
+    },
+    "skill-creator": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "4f29d93bdb1cfacbcd993a8c2a924cb0a12842267bb46f1317c224614b5400b9"
+    },
+    "skill-installer": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "f1152e98ce141e011265c251307f643a7fa334f639fbcd10ce9cfbaf5de8749d"
+    },
+    "update-specification": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "56832dcff10483e3b9755c73d8d88286e5ae4274b3ae75092b9a6aa245a943cb"
+    }
+  }
+}

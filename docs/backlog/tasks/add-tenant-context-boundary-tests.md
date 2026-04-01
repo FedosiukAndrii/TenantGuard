@@ -1,0 +1,35 @@
+---
+title: Add Tenant Context Boundary Tests
+type: task
+status: todo
+tags:
+  - planning
+  - task
+created: 2026-04-01
+updated: 2026-04-01
+slug: add-tenant-context-boundary-tests
+story: tenant-endpoints-require-validated-tenant-context
+feature: tenant-context-and-isolation
+---
+
+# Add Tenant Context Boundary Tests
+
+## Goal
+
+Prove that tenant context enforcement cannot be bypassed on tenant-scoped endpoints.
+
+## Implementation Notes
+
+- Cover missing header, invalid header, and mismatched token/header cases.
+- Assert host endpoint exclusions remain intentional.
+
+## Done When
+
+- Integration tests cover tenant boundary enforcement.
+- `403 Forbidden` behavior is asserted for mismatches.
+- ProblemDetails responses are asserted for invalid requests.
+
+## Related Notes
+
+- [[backlog/stories/tenant-endpoints-require-validated-tenant-context]]
+- [[backlog/features/tenant-context-and-isolation]]

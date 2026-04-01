@@ -36,3 +36,9 @@
 ## Startup Configuration
 - Local startup should open Swagger UI instead of raw OpenAPI JSON, which renders the OpenAPI spec.
 - Prefer Swagger setup implementation in a separate file instead of inline in Program.cs when adding features like tenant header support.
+
+## Planning Documentation Workflow
+- Use the `obsidian-planning-docs` skill when creating or updating PRDs, plans, epics, features, user stories, or tasks.
+- Store those artifacts as Obsidian-friendly markdown under `docs/`.
+- If the required `docs/` structure is missing, create it before writing artifacts.
+- Maintain stable filenames, frontmatter, and `[[wikilinks]]` between related planning notes.
