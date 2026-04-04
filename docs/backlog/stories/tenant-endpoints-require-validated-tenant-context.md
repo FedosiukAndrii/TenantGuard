@@ -1,7 +1,7 @@
 ---
 title: Tenant Endpoints Require Validated Tenant Context
 type: story
-status: proposed
+status: completed
 tags:
   - planning
   - story
@@ -21,13 +21,16 @@ As a platform owner, I want every tenant-scoped endpoint to require validated te
 ## Acceptance Criteria
 
 - Tenant endpoints require a valid `X-Tenant-Id`.
+- Unauthenticated tenant-scoped requests return `401 Unauthorized`.
 - Missing or invalid tenant headers return ProblemDetails responses.
 - Header tenant and token tenant mismatches return `403 Forbidden`.
+- Authenticated tenant requests without a valid tenant claim return `403 Forbidden`.
 - Host endpoints are excluded from tenant context requirements.
 
 ## Notes
 
 - This story covers request-time tenant validation and boundary handling.
+- Implemented in API middleware with integration coverage for anonymous tenant access, invalid header, missing header, invalid tenant claim, tenant-claim mismatch, missing tenant claim, and host-path bypass behavior.
 
 ## Tasks
 

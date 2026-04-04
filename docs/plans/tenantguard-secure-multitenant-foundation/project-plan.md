@@ -85,6 +85,12 @@ Exit criteria:
 9. [[backlog/stories/structured-logging-and-local-bootstrap-support-mvp]]
 10. [[backlog/stories/critical-actions-are-audited]]
 
+### Status Snapshot
+
+- [[backlog/stories/tenant-endpoints-require-validated-tenant-context]] is completed: tenant-scoped requests now fail closed for anonymous access, enforce `X-Tenant-Id`, reject invalid or mismatched tenant claims, and are covered by integration tests.
+- [[backlog/features/tenant-context-and-isolation]] remains in progress because persistence-level isolation is still pending.
+- [[backlog/stories/structured-logging-and-local-bootstrap-support-mvp]] is partially implemented: request logging includes `TraceId` and `TenantId`, and development startup applies migrations automatically, but local seed/bootstrap data and the required test coverage are still missing.
+
 ### Task Breakdown
 
 - [[backlog/tasks/implement-tenant-context-request-validation]]

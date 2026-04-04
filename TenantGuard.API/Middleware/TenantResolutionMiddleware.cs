@@ -7,9 +7,15 @@ namespace TenantGuard.API.Middleware;
 public sealed class TenantResolutionMiddleware(RequestDelegate next)
 {
     private const string TenantHeaderName = "X-Tenant-Id";
+    private const string UnauthorizedType = "https://httpstatuses.com/401";
     private const string BadRequestType = "https://httpstatuses.com/400";
+    private const string ForbiddenType = "https://httpstatuses.com/403";
+    private static readonly string[] TenantClaimTypes = ["tenant_id", "tenantId", "TenantId"];
 
-    public async Task InvokeAsync(HttpContext httpContext, ITenantContext tenantContext)
+    public async Task InvokeAsync(
+        HttpContext httpContext,
+        ITenantContext tenantContext,
+        IProblemDetailsService problemDetailsService)
     {
         if (IsBypassedPath(httpContext.Request.Path))
         {
@@ -19,7 +25,25 @@ public sealed class TenantResolutionMiddleware(RequestDelegate next)
 
         if (!TryGetTenantId(httpContext, out var tenantId))
         {
-            await WriteMissingOrInvalidTenantProblemAsync(httpContext);
+            await WriteProblemAsync(
+                httpContext,
+                problemDetailsService,
+                StatusCodes.Status400BadRequest,
+                BadRequestType,
+                "Bad Request",
+                $"Missing or invalid {TenantHeaderName} header.");
+            return;
+        }
+
+        if (!HasMatchingTokenTenant(httpContext.User, tenantId, out var statusCode, out var detail))
+        {
+            await WriteProblemAsync(
+                httpContext,
+                problemDetailsService,
+                statusCode,
+                statusCode == StatusCodes.Status401Unauthorized ? UnauthorizedType : ForbiddenType,
+                statusCode == StatusCodes.Status401Unauthorized ? "Unauthorized" : "Forbidden",
+                detail);
             return;
         }
 
@@ -27,10 +51,8 @@ public sealed class TenantResolutionMiddleware(RequestDelegate next)
 
         var externalUserId = ResolveExternalUserId(httpContext.User);
 
-        if (!string.IsNullOrWhiteSpace(externalUserId))
-        {
+        if (!string.IsNullOrWhiteSpace(externalUserId)) 
             tenantContext.SetUser(externalUserId);
-        }
 
         await next(httpContext);
     }
@@ -39,33 +61,74 @@ public sealed class TenantResolutionMiddleware(RequestDelegate next)
     {
         tenantId = Guid.Empty;
 
-        if (!httpContext.Request.Headers.TryGetValue(TenantHeaderName, out var tenantHeaderValue))
-        {
-            return false;
-        }
-
-        return Guid.TryParse(tenantHeaderValue, out tenantId);
+        return httpContext.Request.Headers.TryGetValue(TenantHeaderName, out var tenantHeaderValue) && Guid.TryParse(tenantHeaderValue, out tenantId);
     }
 
-    private static string? ResolveExternalUserId(ClaimsPrincipal user) =>
+    private static string ResolveExternalUserId(ClaimsPrincipal user) =>
         user.FindFirstValue(ClaimTypes.NameIdentifier) ??
         user.FindFirstValue("sub");
 
-    private static async Task WriteMissingOrInvalidTenantProblemAsync(HttpContext httpContext)
+    private static bool HasMatchingTokenTenant(
+        ClaimsPrincipal user,
+        Guid tenantId,
+        out int statusCode,
+        out string detail)
     {
-        httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-        httpContext.Response.ContentType = "application/problem+json";
+        statusCode = StatusCodes.Status403Forbidden;
+        detail = $"Authenticated tenant context must match the {TenantHeaderName} header.";
 
-        var problemDetails = new ProblemDetails
+        if (user.Identity?.IsAuthenticated != true)
         {
-            Type = BadRequestType,
-            Title = "Bad Request",
-            Status = StatusCodes.Status400BadRequest,
-            Detail = $"Missing or invalid {TenantHeaderName} header.",
-            Instance = httpContext.Request.Path
-        };
+            statusCode = StatusCodes.Status401Unauthorized;
+            detail = "Tenant-scoped requests require an authenticated user.";
+            return false;
+        }
 
-        await httpContext.Response.WriteAsJsonAsync(problemDetails);
+        var tenantClaim = TenantClaimTypes
+            .Select(user.FindFirstValue)
+            .FirstOrDefault(value => !string.IsNullOrWhiteSpace(value));
+
+        if (string.IsNullOrWhiteSpace(tenantClaim))
+        {
+            detail = "Authenticated tenant requests must include a tenant claim.";
+            return false;
+        }
+
+        if (!Guid.TryParse(tenantClaim, out var tokenTenantId))
+        {
+            detail = "Authenticated tenant requests must include a valid tenant claim.";
+            return false;
+        }
+
+        if (tokenTenantId == tenantId)
+            return true;
+
+        detail = $"The {TenantHeaderName} header does not match the authenticated tenant claim.";
+        return false;
+    }
+
+    private static async Task WriteProblemAsync(
+        HttpContext httpContext,
+        IProblemDetailsService problemDetailsService,
+        int statusCode,
+        string type,
+        string title,
+        string detail)
+    {
+        httpContext.Response.StatusCode = statusCode;
+
+        await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
+        {
+            HttpContext = httpContext,
+            ProblemDetails = new ProblemDetails
+            {
+                Type = type,
+                Title = title,
+                Status = statusCode,
+                Detail = detail,
+                Instance = httpContext.Request.Path
+            }
+        });
     }
 
     private static bool IsBypassedPath(PathString path) =>

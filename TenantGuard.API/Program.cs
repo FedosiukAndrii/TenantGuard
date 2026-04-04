@@ -14,6 +14,8 @@ var connectionString = builder.Configuration.GetConnectionString("TenantGuardDb"
 builder.Services.AddInfrastructure(connectionString);
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerDocumentation();
 
@@ -33,6 +35,7 @@ app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseMiddleware<TenantResolutionMiddleware>();
 app.UseMiddleware<RequestLoggingScopeMiddleware>();
 
@@ -41,3 +44,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program;

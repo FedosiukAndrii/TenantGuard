@@ -1,7 +1,7 @@
 ---
 title: Add Tenant Context Boundary Tests
 type: task
-status: todo
+status: completed
 tags:
   - planning
   - task
@@ -21,12 +21,17 @@ Prove that tenant context enforcement cannot be bypassed on tenant-scoped endpoi
 ## Implementation Notes
 
 - Cover missing header, invalid header, and mismatched token/header cases.
+- Cover anonymous tenant requests and malformed tenant claims.
+- Cover authenticated requests that omit the tenant claim.
 - Assert host endpoint exclusions remain intentional.
 
 ## Done When
 
 - Integration tests cover tenant boundary enforcement.
+- `401 Unauthorized` behavior is asserted for unauthenticated tenant requests.
 - `403 Forbidden` behavior is asserted for mismatches.
+- `403 Forbidden` behavior is asserted for authenticated requests missing a tenant claim.
+- `403 Forbidden` behavior is asserted for malformed tenant claims.
 - ProblemDetails responses are asserted for invalid requests.
 
 ## Related Notes

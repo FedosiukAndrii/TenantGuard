@@ -33,6 +33,11 @@
 - Use clear naming and avoid static state.
 - Use best practices.
 
+## Test Structure
+- Test projects should mirror the source project structure instead of keeping tests flat at the project root.
+- Place tests in folders that match the production area under test, such as `Middleware`, `Controllers`, `Persistence`, or `Services`.
+- Keep shared test host, authentication fakes, and other test-only infrastructure in a dedicated folder such as `Testing`.
+
 ## Startup Configuration
 - Local startup should open Swagger UI instead of raw OpenAPI JSON, which renders the OpenAPI spec.
 - Prefer Swagger setup implementation in a separate file instead of inline in Program.cs when adding features like tenant header support.
