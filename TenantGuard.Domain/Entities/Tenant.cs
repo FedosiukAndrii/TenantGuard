@@ -2,26 +2,18 @@ using TenantGuard.Domain.Enums;
 
 namespace TenantGuard.Domain.Entities;
 
-public sealed class Tenant
+public sealed class Tenant(
+    Guid id,
+    string slug,
+    string name,
+    TenantStatus status,
+    DateTimeOffset createdAtUtc,
+    string createdBy)
 {
-    private Tenant()
-    {
-    }
-
-    public Tenant(Guid id, string slug, string name, TenantStatus status, DateTimeOffset createdAtUtc, string createdBy)
-    {
-        Id = id;
-        Slug = slug;
-        Name = name;
-        Status = status;
-        CreatedAtUtc = createdAtUtc;
-        CreatedBy = createdBy;
-    }
-
-    public Guid Id { get; private set; }
-    public string Slug { get; private set; } = string.Empty;
-    public string Name { get; private set; } = string.Empty;
-    public TenantStatus Status { get; private set; }
-    public DateTimeOffset CreatedAtUtc { get; private set; }
-    public string CreatedBy { get; private set; } = string.Empty;
+    public Guid Id { get; private set; } = id;
+    public string Slug { get; private set; } = slug;
+    public string Name { get; private set; } = name;
+    public TenantStatus Status { get; private set; } = status;
+    public DateTimeOffset CreatedAtUtc { get; private set; } = createdAtUtc;
+    public string CreatedBy { get; private set; } = createdBy;
 }

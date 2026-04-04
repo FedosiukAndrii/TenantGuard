@@ -1,12 +1,12 @@
 ---
 title: Add Persistence Tenant Isolation Tests
 type: task
-status: todo
+status: done
 tags:
   - planning
   - task
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-04
 slug: add-persistence-tenant-isolation-tests
 story: persistence-enforces-tenant-isolation
 feature: tenant-context-and-isolation

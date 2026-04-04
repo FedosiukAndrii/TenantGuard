@@ -1,12 +1,12 @@
 ---
 title: Implement Tenant Query Filters And Save Guards
 type: task
-status: todo
+status: done
 tags:
   - planning
   - task
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-04
 slug: implement-tenant-query-filters-and-save-guards
 story: persistence-enforces-tenant-isolation
 feature: tenant-context-and-isolation

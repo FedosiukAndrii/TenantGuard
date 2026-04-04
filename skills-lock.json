@@ -41,6 +41,11 @@
       "sourceType": "github",
       "computedHash": "e711706b4aebacac01bcc025e19bcf0e88bf784cbe6419ddf07c2be67c501f33"
     },
+    "dotnet-backend-patterns": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "624af9f8faea713dadaa51fc2f2040a4b365b4e083b9b9f82d7e9df1f627ea79"
+    },
     "figma": {
       "source": "openai/skills",
       "sourceType": "github",

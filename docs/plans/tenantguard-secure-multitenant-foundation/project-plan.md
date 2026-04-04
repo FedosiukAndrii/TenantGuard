@@ -88,7 +88,8 @@ Exit criteria:
 ### Status Snapshot
 
 - [[backlog/stories/tenant-endpoints-require-validated-tenant-context]] is completed: tenant-scoped requests now fail closed for anonymous access, enforce `X-Tenant-Id`, reject invalid or mismatched tenant claims, and are covered by integration tests.
-- [[backlog/features/tenant-context-and-isolation]] remains in progress because persistence-level isolation is still pending.
+- [[backlog/stories/persistence-enforces-tenant-isolation]] is completed: `ITenantScoped` interface marks tenant-scoped entities; `AppDbContext` applies a global query filter per tenant and a save guard that auto-assigns `TenantId` on new entities and rejects cross-tenant writes; absent tenant context on writes throws `InvalidOperationException`. Migration `AddProjectsTable` and full isolation test suite added.
+- [[backlog/features/tenant-context-and-isolation]] is now completed: both the request-level validation and persistence-level isolation are in place.
 - [[backlog/stories/structured-logging-and-local-bootstrap-support-mvp]] is partially implemented: request logging includes `TraceId` and `TenantId`, and development startup applies migrations automatically, but local seed/bootstrap data and the required test coverage are still missing.
 
 ### Task Breakdown

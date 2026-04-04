@@ -61,7 +61,8 @@ public sealed class TenantResolutionMiddleware(RequestDelegate next)
     {
         tenantId = Guid.Empty;
 
-        return httpContext.Request.Headers.TryGetValue(TenantHeaderName, out var tenantHeaderValue) && Guid.TryParse(tenantHeaderValue, out tenantId);
+        return httpContext.Request.Headers.TryGetValue(TenantHeaderName, out var tenantHeaderValue)
+            && Guid.TryParse(tenantHeaderValue, out tenantId);
     }
 
     private static string ResolveExternalUserId(ClaimsPrincipal user) =>

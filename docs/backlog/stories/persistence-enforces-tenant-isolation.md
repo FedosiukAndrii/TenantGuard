@@ -1,12 +1,12 @@
 ---
 title: Persistence Enforces Tenant Isolation
 type: story
-status: proposed
+status: done
 tags:
   - planning
   - story
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-04
 slug: persistence-enforces-tenant-isolation
 feature: tenant-context-and-isolation
 epic: tenantguard-secure-multitenant-foundation
